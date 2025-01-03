@@ -2,12 +2,10 @@
 
 import { Button } from "@/components/ui/button";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
 import { Laptop, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
@@ -28,9 +26,9 @@ const ThemeSwitcher = () => {
   const ICON_SIZE = 16;
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size={"sm"}>
+    <HoverCard>
+      <HoverCardTrigger asChild>
+        <Button variant="outline" size={"sm"}>
           {theme === "light" ? (
             <Sun
               key="light"
@@ -51,27 +49,31 @@ const ThemeSwitcher = () => {
             />
           )}
         </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-content" align="start">
-        <DropdownMenuRadioGroup
-          value={theme}
-          onValueChange={(e) => setTheme(e)}
+      </HoverCardTrigger>
+      <HoverCardContent className="w-content" align="end">
+        <div
+          className="flex gap-2 cursor-pointer p-2 hover:bg-accent"
+          onClick={() => setTheme("light")}
         >
-          <DropdownMenuRadioItem className="flex gap-2" value="light">
-            <Sun size={ICON_SIZE} className="text-muted-foreground" />{" "}
-            <span>Light</span>
-          </DropdownMenuRadioItem>
-          <DropdownMenuRadioItem className="flex gap-2" value="dark">
-            <Moon size={ICON_SIZE} className="text-muted-foreground" />{" "}
-            <span>Dark</span>
-          </DropdownMenuRadioItem>
-          <DropdownMenuRadioItem className="flex gap-2" value="system">
-            <Laptop size={ICON_SIZE} className="text-muted-foreground" />{" "}
-            <span>System</span>
-          </DropdownMenuRadioItem>
-        </DropdownMenuRadioGroup>
-      </DropdownMenuContent>
-    </DropdownMenu>
+          <Sun size={ICON_SIZE} className="text-muted-foreground" />
+          Light
+        </div>
+        <div
+          className="flex gap-2 cursor-pointer p-2 hover:bg-accent"
+          onClick={() => setTheme("dark")}
+        >
+          <Moon size={ICON_SIZE} className="text-muted-foreground" />
+          Dark
+        </div>
+        <div
+          className="flex gap-2 cursor-pointer p-2 hover:bg-accent"
+          onClick={() => setTheme("system")}
+        >
+          <Laptop size={ICON_SIZE} className="text-muted-foreground" />
+          System
+        </div>
+      </HoverCardContent>
+    </HoverCard>
   );
 };
 
