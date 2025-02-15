@@ -340,248 +340,252 @@ export default function Home() {
 
   return (
     <>
-    <main className="pt-12 relative min-h-screen">
-      <div className="relative z-10">
-        <TableOfContents
-          sections={sections}
-          activeSection={activeSection}
-          scrollToSection={scrollToSection}
-        />
+      <main className="pt-12 relative min-h-screen">
+        <div className="relative z-10">
+          <TableOfContents
+            sections={sections}
+            activeSection={activeSection}
+            scrollToSection={scrollToSection}
+          />
 
-        {/* Hero Section */}
-        <section
-          ref={heroRef}
-          className="container mx-auto px-6 py-24"
-          id="hero"
-        >
-          <h1 className="text-6xl font-bold text-center mb-8">
-            Tradify<span className="text-primary">.</span>
-          </h1>
-          <p className="text-xl text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Transform your translation workflow with AI-powered project
-            management
-          </p>
-          <div className="flex justify-center gap-4 flex-col w-full px-48">
-            <Button size="lg">
-              <RocketIcon size={18} className="mr-2" />
-              Get Started
-            </Button>
-            <Link
-              href="/sign-in"
-              className={cn(
-                buttonVariants({ variant: "link" }),
-                "text-muted-foreground"
-              )}
-            >
-              Already have an account?
-            </Link>
-          </div>
-        </section>
+          {/* Hero Section */}
+          <section
+            ref={heroRef}
+            className="container mx-auto px-6 py-24"
+            id="hero"
+          >
+            <h1 className="text-6xl font-bold text-center mb-8">
+              Tradify<span className="text-primary">.</span>
+            </h1>
+            <p className="text-xl text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+              Transform your translation workflow with AI-powered project
+              management
+            </p>
+            <div className="flex justify-center gap-4 flex-col w-full px-48">
+              <Button size="lg">
+                <RocketIcon size={18} className="mr-2" />
+                Get Started
+              </Button>
+              <Link
+                href="/sign-in"
+                className={cn(
+                  buttonVariants({ variant: "link" }),
+                  "text-muted-foreground",
+                )}
+              >
+                Already have an account?
+              </Link>
+            </div>
+          </section>
 
-        {/* Features Carousel Section */}
-        <section
-          ref={featuresRef}
-          className="container mx-auto px-6 pt-16 pb-12 bg-accent/20 rounded-lg"
-          id="features"
-        >
-          <h2 className="text-3xl font-bold text-center mb-16">
-            Powerful Features
-          </h2>
+          {/* Features Carousel Section */}
+          <section
+            ref={featuresRef}
+            className="container mx-auto px-6 pt-16 pb-12 bg-accent/20 rounded-lg"
+            id="features"
+          >
+            <h2 className="text-3xl font-bold text-center mb-16">
+              Powerful Features
+            </h2>
 
-          <div className="relative">
-            <div className="overflow-hidden" ref={emblaRef}>
-              <div className="flex">
-                {allFeatures.map((feature, index) => (
-                  <div
-                    key={index}
-                    className="flex-[0_0_33.33%] min-w-0 px-4 feature-card"
-                  >
-                    <div className="bg-card p-6 rounded-xl shadow-sm border border-border h-full">
-                      <div className="text-primary text-3xl mb-4">
-                        {feature.icon}
+            <div className="relative">
+              <div className="overflow-hidden" ref={emblaRef}>
+                <div className="flex">
+                  {allFeatures.map((feature, index) => (
+                    <div
+                      key={index}
+                      className="flex-[0_0_33.33%] min-w-0 px-4 feature-card"
+                    >
+                      <div className="bg-card p-6 rounded-xl shadow-sm border border-border h-full">
+                        <div className="text-primary text-3xl mb-4">
+                          {feature.icon}
+                        </div>
+                        <h3 className="text-xl font-semibold mb-3">
+                          {feature.title}
+                        </h3>
+                        <p className="text-muted-foreground">
+                          {feature.description}
+                        </p>
                       </div>
-                      <h3 className="text-xl font-semibold mb-3">
-                        {feature.title}
-                      </h3>
-                      <p className="text-muted-foreground">
-                        {feature.description}
-                      </p>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
 
-            {/* Carousel Navigation */}
-            <Button
-              variant={"outline"}
-              size="icon"
-              onClick={scrollPrev}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -ml-12"
-            >
-              <ChevronLeft size={18} />
-            </Button>
-            <Button
-              variant={"outline"}
-              size="icon"
-              onClick={scrollNext}
-              className="absolute right-0 top-1/2 -translate-y-1/2  -mr-12"
-            >
-              <ChevronRight size={18} />
-            </Button>
-          </div>
-        </section>
-
-        {/* Pricing Section */}
-        <section
-          ref={pricingRef}
-          className="container mx-auto px-6 py-24"
-          id="pricing"
-        >
-          <h2 className="text-3xl font-bold text-center mb-16">
-            Simple Pricing
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Plan Starter */}
-            <div className="bg-card rounded-2xl shadow-sm border border-border p-8">
-              <div className="text-center text-3xl font-bold mb-2">Starter</div>
-              <div className="text-center text-4xl font-bold mb-6">
-                $19<span className="text-muted-foreground text-xl">/month</span>
-              </div>
-              <ul className="space-y-4 mb-8">
-                {[
-                  "Basic Discord Bot",
-                  "5GB Translation Memory",
-                  "Basic Analytics",
-                  "Email Support",
-                  "Up to 5 Team Members",
-                  "REST API Access",
-                ].map((feature, index) => (
-                  <li key={index} className="flex items-center">
-                    <span className="text-primary mr-2">✓</span>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              <Button variant="outline" className="w-full">
-                <RocketIcon size={18} className="mr-2" />
-                Start Free Trial
+              {/* Carousel Navigation */}
+              <Button
+                variant={"outline"}
+                size="icon"
+                onClick={scrollPrev}
+                className="absolute left-0 top-1/2 -translate-y-1/2 -ml-12"
+              >
+                <ChevronLeft size={18} />
+              </Button>
+              <Button
+                variant={"outline"}
+                size="icon"
+                onClick={scrollNext}
+                className="absolute right-0 top-1/2 -translate-y-1/2  -mr-12"
+              >
+                <ChevronRight size={18} />
               </Button>
             </div>
+          </section>
 
-            {/* Plan Professional */}
-            <div className="bg-card rounded-2xl shadow-sm border-2 border-primary p-8 scale-105 relative">
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm">
-                Most Popular
+          {/* Pricing Section */}
+          <section
+            ref={pricingRef}
+            className="container mx-auto px-6 py-24"
+            id="pricing"
+          >
+            <h2 className="text-3xl font-bold text-center mb-16">
+              Simple Pricing
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {/* Plan Starter */}
+              <div className="bg-card rounded-2xl shadow-sm border border-border p-8">
+                <div className="text-center text-3xl font-bold mb-2">
+                  Starter
+                </div>
+                <div className="text-center text-4xl font-bold mb-6">
+                  $19
+                  <span className="text-muted-foreground text-xl">/month</span>
+                </div>
+                <ul className="space-y-4 mb-8">
+                  {[
+                    "Basic Discord Bot",
+                    "5GB Translation Memory",
+                    "Basic Analytics",
+                    "Email Support",
+                    "Up to 5 Team Members",
+                    "REST API Access",
+                  ].map((feature, index) => (
+                    <li key={index} className="flex items-center">
+                      <span className="text-primary mr-2">✓</span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <Button variant="outline" className="w-full">
+                  <RocketIcon size={18} className="mr-2" />
+                  Start Free Trial
+                </Button>
               </div>
-              <div className="text-center text-3xl font-bold mb-2">
-                Professional
+
+              {/* Plan Professional */}
+              <div className="bg-card rounded-2xl shadow-sm border-2 border-primary p-8 scale-105 relative">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm">
+                  Most Popular
+                </div>
+                <div className="text-center text-3xl font-bold mb-2">
+                  Professional
+                </div>
+                <div className="text-center text-4xl font-bold mb-6">
+                  $49
+                  <span className="text-muted-foreground text-xl">/month</span>
+                </div>
+                <ul className="space-y-4 mb-8">
+                  {[
+                    "Custom Discord Bot",
+                    "Unlimited Translation Memory",
+                    "Real-time Analytics",
+                    "24/7 Priority Support",
+                    "Team Collaboration Tools",
+                    "API Access",
+                  ].map((feature, index) => (
+                    <li key={index} className="flex items-center">
+                      <span className="text-primary mr-2">✓</span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <Button variant="default" className="w-full">
+                  <RocketIcon size={18} className="mr-2" />
+                  Ready to get started?
+                </Button>
               </div>
-              <div className="text-center text-4xl font-bold mb-6">
-                $49<span className="text-muted-foreground text-xl">/month</span>
+
+              {/* Plan Enterprise */}
+              <div className="bg-card rounded-2xl shadow-sm border border-border p-8">
+                <div className="text-center text-3xl font-bold mb-2">
+                  Enterprise
+                </div>
+                <div className="text-center text-4xl font-bold mb-6">
+                  $199
+                  <span className="text-muted-foreground text-xl">/month</span>
+                </div>
+                <ul className="space-y-4 mb-8">
+                  {[
+                    "Custom AI Solutions",
+                    "Dedicated Server",
+                    "Advanced Analytics",
+                    "Dedicated Account Manager",
+                    "Custom Integration",
+                    "SLA Guarantee",
+                    "White-label Options",
+                    "Custom Security Features",
+                  ].map((feature, index) => (
+                    <li key={index} className="flex items-center">
+                      <span className="text-primary mr-2">✓</span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <Button variant="outline" className="w-full">
+                  <RocketIcon size={18} className="mr-2" />
+                  Contact Sales
+                </Button>
               </div>
-              <ul className="space-y-4 mb-8">
-                {[
-                  "Custom Discord Bot",
-                  "Unlimited Translation Memory",
-                  "Real-time Analytics",
-                  "24/7 Priority Support",
-                  "Team Collaboration Tools",
-                  "API Access",
-                ].map((feature, index) => (
-                  <li key={index} className="flex items-center">
-                    <span className="text-primary mr-2">✓</span>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              <Button variant="default" className="w-full">
-                <RocketIcon size={18} className="mr-2" />
-                Ready to get started?
-              </Button>
             </div>
+          </section>
 
-            {/* Plan Enterprise */}
-            <div className="bg-card rounded-2xl shadow-sm border border-border p-8">
-              <div className="text-center text-3xl font-bold mb-2">
-                Enterprise
-              </div>
-              <div className="text-center text-4xl font-bold mb-6">
-                $199
-                <span className="text-muted-foreground text-xl">/month</span>
-              </div>
-              <ul className="space-y-4 mb-8">
-                {[
-                  "Custom AI Solutions",
-                  "Dedicated Server",
-                  "Advanced Analytics",
-                  "Dedicated Account Manager",
-                  "Custom Integration",
-                  "SLA Guarantee",
-                  "White-label Options",
-                  "Custom Security Features",
-                ].map((feature, index) => (
-                  <li key={index} className="flex items-center">
-                    <span className="text-primary mr-2">✓</span>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              <Button variant="outline" className="w-full">
-                <RocketIcon size={18} className="mr-2" />
-                Contact Sales
-              </Button>
-            </div>
-          </div>
-        </section>
-
-        {/* FAQ Section */}
-        <section
-          ref={faqRef}
-          className="container mx-auto px-12 pt-12 pb-6 bg-accent/20 rounded-lg"
-          id="faq"
-        >
-          <h2 className="text-3xl font-bold text-center mb-16">
-            Frequently Asked Questions
-          </h2>
-          <Accordion type="single" collapsible>
-            {[
-              {
-                question: "How does the AI assistant work?",
-                answer:
-                  "Our AI assistant integrates with Discord and uses advanced natural language processing to help manage translation projects, assign tasks, and facilitate communication between team members.",
-              },
-              {
-                question: "Can I import existing translation memories?",
-                answer:
-                  "Yes! Tradify supports importing TMX, XLIFF, and other standard translation memory formats. You can easily migrate your existing translation assets.",
-              },
-              {
-                question: "Is there a limit on team members?",
-                answer:
-                  "No, our premium plan includes unlimited team members and collaboration features. You can grow your team without worrying about per-user costs.",
-              },
-              {
-                question: "What kind of support do you offer?",
-                answer:
-                  "Premium plan includes 24/7 priority support via email, Discord, and live chat. We also provide comprehensive documentation and video tutorials.",
-              },
-              {
-                question: "Is my data secure?",
-                answer:
-                  "Yes, we use enterprise-grade encryption and follow strict security protocols. Your data is stored in secure data centers with regular backups.",
-              },
-            ].map((faq, index) => (
-              <AccordionItem value={`item-${index + 1}`} key={index}>
-                <AccordionTrigger>{faq.question}</AccordionTrigger>
-                <AccordionContent>{faq.answer}</AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </section>
-      </div>
-    </main>
-    <Footer />
+          {/* FAQ Section */}
+          <section
+            ref={faqRef}
+            className="container mx-auto px-12 pt-12 pb-6 bg-accent/20 rounded-lg"
+            id="faq"
+          >
+            <h2 className="text-3xl font-bold text-center mb-16">
+              Frequently Asked Questions
+            </h2>
+            <Accordion type="single" collapsible>
+              {[
+                {
+                  question: "How does the AI assistant work?",
+                  answer:
+                    "Our AI assistant integrates with Discord and uses advanced natural language processing to help manage translation projects, assign tasks, and facilitate communication between team members.",
+                },
+                {
+                  question: "Can I import existing translation memories?",
+                  answer:
+                    "Yes! Tradify supports importing TMX, XLIFF, and other standard translation memory formats. You can easily migrate your existing translation assets.",
+                },
+                {
+                  question: "Is there a limit on team members?",
+                  answer:
+                    "No, our premium plan includes unlimited team members and collaboration features. You can grow your team without worrying about per-user costs.",
+                },
+                {
+                  question: "What kind of support do you offer?",
+                  answer:
+                    "Premium plan includes 24/7 priority support via email, Discord, and live chat. We also provide comprehensive documentation and video tutorials.",
+                },
+                {
+                  question: "Is my data secure?",
+                  answer:
+                    "Yes, we use enterprise-grade encryption and follow strict security protocols. Your data is stored in secure data centers with regular backups.",
+                },
+              ].map((faq, index) => (
+                <AccordionItem value={`item-${index + 1}`} key={index}>
+                  <AccordionTrigger>{faq.question}</AccordionTrigger>
+                  <AccordionContent>{faq.answer}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </section>
+        </div>
+      </main>
+      <Footer />
     </>
   );
 }

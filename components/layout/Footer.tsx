@@ -30,7 +30,7 @@ const Footer = () => {
           end: "bottom bottom",
           toggleActions: "play none none reverse",
         },
-      }
+      },
     );
 
     if (links?.children) {
@@ -46,7 +46,7 @@ const Footer = () => {
             trigger: links,
             start: "top bottom-=100",
           },
-        }
+        },
       );
     }
 
@@ -63,7 +63,7 @@ const Footer = () => {
             trigger: social,
             start: "top bottom-=50",
           },
-        }
+        },
       );
     }
   }, []);

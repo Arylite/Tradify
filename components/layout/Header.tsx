@@ -93,7 +93,7 @@ export const Header = () => {
                   <NavigationMenuLink
                     className={cn(
                       navigationMenuTriggerStyle(),
-                      "flex items-center gap-2"
+                      "flex items-center gap-2",
                     )}
                   >
                     <Home size={16} className="text-muted-foreground" />
@@ -170,7 +170,7 @@ export const Header = () => {
             href="/sign-in"
             className={cn(
               "flex items-center gap-2",
-              buttonVariants({ variant: "ghost" })
+              buttonVariants({ variant: "ghost" }),
             )}
           >
             <LogIn size={16} /> Login
