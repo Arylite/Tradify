@@ -1,10 +1,4 @@
 import { NextConfig } from "next";
-import { Configuration as WebpackConfig } from "webpack";
-
-interface WebpackConfigContext {
-  dev: boolean;
-  isServer: boolean;
-}
 
 const nextConfig: NextConfig = {
   swcMinify: true,
@@ -62,88 +56,6 @@ const nextConfig: NextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     domains: [],
     unoptimized: false,
-  },
-
-  // Configuration Webpack ultra-optimisée
-  webpack: (config: WebpackConfig, { dev, isServer }: WebpackConfigContext) => {
-    if (!dev) {
-      // Optimisations extrêmes en production
-      config.optimization = {
-        ...config.optimization,
-        moduleIds: "deterministic",
-        chunkIds: "deterministic",
-        mangleExports: "deterministic",
-        concatenateModules: true,
-        removeAvailableModules: true,
-        removeEmptyChunks: true,
-        mergeDuplicateChunks: true,
-        minimize: true,
-        runtimeChunk: {
-          name: "runtime",
-        },
-        splitChunks: {
-          chunks: "all",
-          maxInitialRequests: 30,
-          maxAsyncRequests: 30,
-          minSize: 15000,
-          maxSize: 50000,
-          cacheGroups: {
-            default: false,
-            vendors: false,
-            framework: {
-              name: "framework",
-              test: /[\\/]node_modules[\\/](react|react-dom|next|@next)[\\/]/,
-              priority: 50,
-              chunks: "all",
-              enforce: true,
-              reuseExistingChunk: true,
-            },
-            lib: {
-              test: /[\\/]node_modules[\\/]/,
-              priority: 40,
-              chunks: "async",
-              name(module: any, chunks: any) {
-                return `lib.${module.context?.split("/").slice(-2).join(".")}`;
-              },
-              minChunks: 2,
-              reuseExistingChunk: true,
-            },
-            commons: {
-              name: "commons",
-              minChunks: 3,
-              priority: 30,
-              chunks: "all",
-              reuseExistingChunk: true,
-            },
-            shared: {
-              name(module: any, chunks: any) {
-                return `shared.${chunks.map((chunk: any) => chunk.name).join(".")}`;
-              },
-              priority: 20,
-              minChunks: 2,
-              reuseExistingChunk: true,
-              enforce: true,
-            },
-            styles: {
-              name: "styles",
-              test: /\.(css|scss|sass)$/,
-              chunks: "all",
-              enforce: true,
-              reuseExistingChunk: true,
-            },
-          },
-        },
-      };
-
-      // Optimisation des assets
-      config.performance = {
-        hints: "error",
-        maxEntrypointSize: 170000,
-        maxAssetSize: 170000,
-      };
-    }
-
-    return config;
   },
 
   experimental: {
