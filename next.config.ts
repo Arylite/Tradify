@@ -60,7 +60,6 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 604800,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    loader: "imgix",
     domains: [],
     unoptimized: false,
   },
